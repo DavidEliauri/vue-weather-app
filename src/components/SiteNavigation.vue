@@ -29,7 +29,7 @@
     <BaseModal
         :show="showModal"
         @close="() => (showModal = false)"
-        title="Модальное окно окно окно окно окноы"
+        title="Модальное окно окно окно окно окно"
     >
         <div class="content">
             <p>

@@ -1,5 +1,7 @@
 <template>
-    <div class="font-Inter flex flex-col min-h-screen">
+    <div
+        class="bg-slate-100 font-Inter flex flex-col min-h-screen min-w-[320px]"
+    >
         <SiteNavigation />
 
         <RouterView />
