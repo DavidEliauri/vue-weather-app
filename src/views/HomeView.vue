@@ -1,43 +1,3 @@
-<template>
-    <main>
-        <div class="container md:max-w-screen-md">
-            <input
-                type="text"
-                v-model="searchQuery"
-                @input="sendQuery"
-                placeholder="Найти город"
-                class="w-full h-14 px-2 border border-gray-300 rounded-md"
-            />
-
-            <div
-                class="mt-10 bg-white overflow-hidden shadow-md rounded-xl"
-                v-if="showSuggestions"
-            >
-                <p
-                    class="py-3 px-4 font-medium text-lg"
-                    v-if="!suggestions.length"
-                >
-                    К сожалению, ничего не найдено 😞
-                </p>
-
-                <ul
-                    v-else
-                    class="divide-y"
-                >
-                    <li
-                        v-for="suggestion in suggestions"
-                        :key="suggestion"
-                        @click="onSuggestionClick(suggestion)"
-                        class="py-3 px-4 cursor-pointer transition-colors duration-100 hover:bg-indigo-100 active:transition-none active:bg-indigo-200"
-                    >
-                        <span v-html="suggestion.printAddress"></span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </main>
-</template>
-
 <script setup>
 import { ref, computed } from "vue";
 import axios from "axios";
@@ -174,3 +134,43 @@ async function getTowns(query) {
         });
 }
 </script>
+
+<template>
+    <main>
+        <div class="container md:max-w-screen-md">
+            <input
+                type="text"
+                v-model="searchQuery"
+                @input="sendQuery"
+                placeholder="Найти город"
+                class="w-full h-14 px-2 border border-gray-300 rounded-md"
+            />
+
+            <div
+                class="mt-10 bg-white overflow-hidden shadow-md rounded-xl"
+                v-if="showSuggestions"
+            >
+                <p
+                    class="py-3 px-4 font-medium text-lg"
+                    v-if="!suggestions.length"
+                >
+                    К сожалению, ничего не найдено 😞
+                </p>
+
+                <ul
+                    v-else
+                    class="divide-y"
+                >
+                    <li
+                        v-for="suggestion in suggestions"
+                        :key="suggestion"
+                        @click="onSuggestionClick(suggestion)"
+                        class="py-3 px-4 cursor-pointer transition-colors duration-100 hover:bg-indigo-100 active:transition-none active:bg-indigo-200"
+                    >
+                        <span v-html="suggestion.printAddress"></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+</template>

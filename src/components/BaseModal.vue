@@ -1,3 +1,28 @@
+<script setup>
+import BaseIcon from "./BaseIcon.vue";
+
+const emit = defineEmits(["close"]);
+
+const props = defineProps({
+    title: {
+        type: String,
+        required: true,
+    },
+    show: {
+        type: Boolean,
+        default: false,
+    },
+});
+
+function close() {
+    emit("close");
+}
+
+function toggleScroll() {
+    document.body.classList.toggle("overflow-hidden");
+}
+</script>
+
 <template>
     <Teleport to="body">
         <Transition
@@ -37,31 +62,6 @@
         </Transition>
     </Teleport>
 </template>
-
-<script setup>
-import BaseIcon from "./BaseIcon.vue";
-
-const emit = defineEmits(["close"]);
-
-const props = defineProps({
-    title: {
-        type: String,
-        required: true,
-    },
-    show: {
-        type: Boolean,
-        default: false,
-    },
-});
-
-function close() {
-    emit("close");
-}
-
-function toggleScroll() {
-    document.body.classList.toggle("overflow-hidden");
-}
-</script>
 
 <style>
 .modal-enter-active {

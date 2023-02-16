@@ -1,3 +1,44 @@
+<script setup>
+import { ref, onMounted } from "vue";
+import BaseIcon from "./BaseIcon.vue";
+import BaseModal from "./BaseModal.vue";
+
+const header = ref(null);
+const showModal = ref(false);
+
+onMounted(() => {
+    const headerScrolledClasses = ["bg-indigo-50/95"];
+    let ticking = false;
+
+    function onScroll() {
+        const scrollPos = window.scrollY;
+
+        if (scrollPos >= header.value.offsetHeight) {
+            header.value.classList.add(headerScrolledClasses);
+        } else {
+            header.value.classList.remove(headerScrolledClasses);
+        }
+    }
+
+    onScroll();
+
+    document.addEventListener("scroll", () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                onScroll();
+                ticking = false;
+            });
+
+            ticking = true;
+        }
+    });
+});
+
+function toggleModal() {
+    showModal.value = true;
+}
+</script>
+
 <template>
     <header
         class="sticky top-0 left-0 transition duration-150 mb-6"
@@ -58,44 +99,3 @@
         </div>
     </BaseModal>
 </template>
-
-<script setup>
-import { ref, onMounted } from "vue";
-import BaseIcon from "./BaseIcon.vue";
-import BaseModal from "./BaseModal.vue";
-
-const header = ref(null);
-const showModal = ref(false);
-
-onMounted(() => {
-    const headerScrolledClasses = ["bg-indigo-50/95"];
-    let ticking = false;
-
-    function onScroll() {
-        const scrollPos = window.scrollY;
-
-        if (scrollPos >= header.value.offsetHeight) {
-            header.value.classList.add(headerScrolledClasses);
-        } else {
-            header.value.classList.remove(headerScrolledClasses);
-        }
-    }
-
-    onScroll();
-
-    document.addEventListener("scroll", () => {
-        if (!ticking) {
-            window.requestAnimationFrame(() => {
-                onScroll();
-                ticking = false;
-            });
-
-            ticking = true;
-        }
-    });
-});
-
-function toggleModal() {
-    showModal.value = true;
-}
-</script>

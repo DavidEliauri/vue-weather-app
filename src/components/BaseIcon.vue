@@ -1,13 +1,3 @@
-<template>
-    <i
-        :class="{
-            [props.class]: true,
-            'text-xl transition-colors cursor-pointer hover:text-indigo-300': true,
-        }"
-        @click="emit('click')"
-    ></i>
-</template>
-
 <script setup>
 const props = defineProps({
     class: {
@@ -18,3 +8,13 @@ const props = defineProps({
 
 const emit = defineEmits(["click"]);
 </script>
+
+<template>
+    <i
+        :class="{
+            [props.class]: true,
+            'text-xl transition-colors cursor-pointer hover:text-indigo-300': true,
+        }"
+        @click="emit('click')"
+    ></i>
+</template>
